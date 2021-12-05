@@ -10,9 +10,13 @@
         </button>
     </div>
 
-    <section class="section">
+    <section *ngIf="loading" class="loading">
+        <app-cs-spinner></app-cs-spinner>
+    </section>
+
+    <section *ngIf="!loading" class="section">
         <p *ngFor="let item of items">
-            <mat-checkbox color="primary" [value]="item">{{item}}</mat-checkbox>
+            <mat-checkbox color="primary" [value]="item">{{item.description}}</mat-checkbox>
         </p>
     </section>
 </form>

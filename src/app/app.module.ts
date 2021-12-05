@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { LoginComponent } from './pages/login/login.component';
@@ -18,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './pages/home/home.component';
 import { CsToolbarComponent } from './components/cs-toolbar/cs-toolbar.component';
 import { CsNewTodoComponent } from './components/cs-new-todo/cs-new-todo.component';
+import { CsSpinnerComponent } from './components/cs-spinner/cs-spinner.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { CsNewTodoComponent } from './components/cs-new-todo/cs-new-todo.compone
     RegisterComponent,
     HomeComponent,
     CsToolbarComponent,
-    CsNewTodoComponent
+    CsNewTodoComponent,
+    CsSpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +43,8 @@ import { CsNewTodoComponent } from './components/cs-new-todo/cs-new-todo.compone
     HttpClientModule,
     MatIconModule,
     MatToolbarModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
