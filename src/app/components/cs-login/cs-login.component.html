@@ -1,14 +1,14 @@
 <form class="form">
     <mat-form-field class="full-width" appearance="fill">
         <mat-label>Username</mat-label>
-        <input matInput placeholder="Ex. Pizza">
+        <input matInput [(ngModel)]="item.username" [ngModelOptions]="{standalone: true}">
     </mat-form-field>
 
     <mat-form-field class="full-width" appearance="fill">
         <mat-label>Senha</mat-label>
-        <input matInput placeholder="Ex. Pizza">
+        <input matInput type="password" [(ngModel)]="item.password" [ngModelOptions]="{standalone: true}">
     </mat-form-field>
 
-    <button mat-raised-button color="primary" class="full-width">Entrar</button>
+    <button mat-raised-button color="primary" class="full-width" (click)="login()">Entrar</button>
     <button mat-stroked-button color="primary" class="full-width" routerLink="/register">Cadastre-se</button>
 </form>

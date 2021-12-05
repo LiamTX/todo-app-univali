@@ -1,0 +1,18 @@
+<form class="form">
+    <div class="input">
+        <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Cadastre um a fazer</mat-label>
+            <input matInput [(ngModel)]="todo" [ngModelOptions]="{standalone: true}">
+        </mat-form-field>
+
+        <button (click)="newTodo()" color="primary" mat-mini-fab aria-label="Example icon button with a home icon">
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
+
+    <section class="section">
+        <p *ngFor="let item of items">
+            <mat-checkbox color="primary" [value]="item">{{item}}</mat-checkbox>
+        </p>
+    </section>
+</form>
