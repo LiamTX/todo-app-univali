@@ -22,9 +22,11 @@ export class CsNewTodoComponent implements OnInit {
     this.listTodos();
   }
 
+  // List all todos
   listTodos() {
     this.loading = true;
 
+    // Calling the todoService with the list function
     this.todoService.list().subscribe((resp: any) => {
       this.items.push(...resp);
       this.loading = false;
@@ -34,6 +36,7 @@ export class CsNewTodoComponent implements OnInit {
     })
   }
 
+  // Create todo
   newTodo() {
     if (!this.todo) {
       alert('Preencha o campo!');
@@ -41,6 +44,7 @@ export class CsNewTodoComponent implements OnInit {
       return;
     }
 
+    // Calling the todoService with the create function
     this.todoService.create({ description: this.todo }).subscribe(resp => {
       console.log(resp);
       this.items.push(resp);
@@ -50,7 +54,9 @@ export class CsNewTodoComponent implements OnInit {
     });
   }
 
+  // Update todo
   updateTodo(item: any) {
+    // Calling the todoService with the update function
     this.todoService.update(item._id, { done: item.done ? false : true }).subscribe(resp => {
       console.log(resp);
       const todo = this.items.find(t => t._id == item._id);
@@ -61,7 +67,9 @@ export class CsNewTodoComponent implements OnInit {
     })
   }
 
+  // Delete todo
   deleteTodo(id: string) {
+    // Calling the todoService with the delete function
     this.todoService.delete(id).subscribe(resp => {
       this.items.splice(this.items.indexOf(this.items.find(todo => todo._id == id)), 1);
     }, err => {

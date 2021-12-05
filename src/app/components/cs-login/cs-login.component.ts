@@ -24,6 +24,7 @@ export class CsLoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // Login function
   login() {
     if (!this.item.username || !this.item.password) {
       alert('Preencha todos os campos!');
@@ -33,8 +34,10 @@ export class CsLoginComponent implements OnInit {
 
     this.loading = true;
 
+    // Calling the userService with the auth function
     this.userService.auth(this.item).subscribe((resp: any) => {
       if (resp.token) {
+        // Setting user data (userToken and username) to localStorage
         localStorage.setItem('token', resp.token);
         localStorage.setItem('username', this.item.username);
 
@@ -45,6 +48,7 @@ export class CsLoginComponent implements OnInit {
         this.router.navigate(['home']);
       }
     }, err => {
+      // error treatment
       this.loading = false;
 
       console.log(err);

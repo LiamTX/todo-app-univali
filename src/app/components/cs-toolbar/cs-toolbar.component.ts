@@ -15,10 +15,13 @@ export class CsToolbarComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    // Load the username on toolbar
     this.username = localStorage.getItem('username')?.toString();
   }
 
+  // Logout function
   logout() {
+    // Removing "cache"
     localStorage.removeItem('token');
     localStorage.removeItem('username');
 

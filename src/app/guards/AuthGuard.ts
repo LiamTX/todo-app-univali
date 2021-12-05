@@ -9,6 +9,7 @@ export class AuthGuard implements CanActivate {
 
     constructor(private userService: UserService, private router: Router) { }
 
+    // Verify if user is authenticated
     async canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
         return new Promise(resolve => {
             this.userService.verifyAuth().subscribe(resp => {

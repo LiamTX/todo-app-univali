@@ -25,6 +25,7 @@ export class CsRegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // Create user
   async register() {
     console.log(this.item);
     if (!this.item.username || !this.item.password) {
@@ -35,6 +36,7 @@ export class CsRegisterComponent implements OnInit {
 
     this.loading = true;
 
+    // Calling the userService with the create function
     this.userService.create(this.item).subscribe(resp => {
       console.log(resp);
       this.loading = false;
@@ -50,6 +52,7 @@ export class CsRegisterComponent implements OnInit {
       this.router.navigate(['login'])
 
     }, err => {
+      // Error treatment
       this.loading = false;
 
       console.log(err);
