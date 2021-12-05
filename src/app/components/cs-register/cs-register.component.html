@@ -1,5 +1,6 @@
 <form class="form">
-    <button routerLink="/login" color="primary" mat-icon-button aria-label="Example icon button with a open in new tab icon">
+    <button routerLink="/login" color="primary" mat-icon-button
+        aria-label="Example icon button with a open in new tab icon">
         <mat-icon>arrow_back</mat-icon>
     </button>
 
@@ -18,5 +19,6 @@
         <input matInput type="password" [(ngModel)]="item.password" [ngModelOptions]="{standalone: true}">
     </mat-form-field>
 
-    <button mat-raised-button color="primary" class="full-width" (click)="register()">Cadastrar</button>
+    <button mat-raised-button color="primary" class="full-width" (click)="register()" (keyup.enter)="register()"
+        [class.spinner]="loading" [disabled]="loading">Cadastrar</button>
 </form>

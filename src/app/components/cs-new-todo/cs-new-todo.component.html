@@ -5,7 +5,8 @@
             <input matInput [(ngModel)]="todo" [ngModelOptions]="{standalone: true}">
         </mat-form-field>
 
-        <button (click)="newTodo()" color="primary" mat-mini-fab aria-label="Example icon button with a home icon">
+        <button (click)="newTodo()" (keyup.enter)="newTodo()" color="primary" mat-mini-fab
+            aria-label="Example icon button with a home icon">
             <mat-icon>add</mat-icon>
         </button>
     </div>
@@ -16,7 +17,19 @@
 
     <section *ngIf="!loading" class="section">
         <p *ngFor="let item of items">
-            <mat-checkbox color="primary" [value]="item">{{item.description}}</mat-checkbox>
+            <mat-checkbox *ngIf="item.done" [checked]="item.done" (change)="updateTodo(item)" color="primary" [value]="item">
+                <del>{{item.description}}</del>
+            </mat-checkbox>
+
+            <mat-checkbox *ngIf="!item.done" [checked]="item.done" (change)="updateTodo(item)" color="primary" [value]="item">
+                {{item.description}}
+            </mat-checkbox>
+
+            <span class="spacer"></span>
+
+            <button (click)="deleteTodo(item._id)" mat-icon-button color="warn" aria-label="Example icon button with a open in new tab icon">
+                <mat-icon>delete</mat-icon>
+            </button>
         </p>
     </section>
 </form>

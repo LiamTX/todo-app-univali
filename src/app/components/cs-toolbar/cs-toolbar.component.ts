@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cs-toolbar',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CsToolbarComponent implements OnInit {
 
-  constructor() { }
+  username: string | undefined = '';
+
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
+    this.username = localStorage.getItem('username')?.toString();
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('username');
+
+    this.router.navigate(['login']);
   }
 
 }

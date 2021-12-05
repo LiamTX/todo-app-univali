@@ -9,6 +9,8 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class CsLoginComponent implements OnInit {
 
+  loading = false;
+
   item = {
     username: '',
     password: ''
@@ -29,36 +31,39 @@ export class CsLoginComponent implements OnInit {
       return;
     }
 
+    this.loading = true;
+
     this.userService.auth(this.item).subscribe((resp: any) => {
       if (resp.token) {
         localStorage.setItem('token', resp.token);
+        localStorage.setItem('username', this.item.username);
+
         alert(`Seja Bem-Vindo(a) ${this.item.username}`);
+
+        this.loading = false;
 
         this.router.navigate(['home']);
       }
     }, err => {
+      this.loading = false;
+
       console.log(err);
+
+      this.item = {
+        username: '',
+        password: ''
+      }
 
       const { error } = err;
 
       if (error.message == 'User not found') {
         alert('Username não foi encontrado!');
 
-        this.item = {
-          username: '',
-          password: ''
-        }
-
         return;
       }
 
       if (error.message == 'unauthorized') {
         alert('Username ou Senha incorretos!');
-
-        this.item = {
-          username: '',
-          password: ''
-        }
 
         return;
       }

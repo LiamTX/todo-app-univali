@@ -50,4 +50,23 @@ export class CsNewTodoComponent implements OnInit {
     });
   }
 
+  updateTodo(item: any) {
+    this.todoService.update(item._id, { done: item.done ? false : true }).subscribe(resp => {
+      console.log(resp);
+      const todo = this.items.find(t => t._id == item._id);
+      const index = this.items.indexOf(todo);
+      this.items[index] = resp;
+    }, err => {
+      console.log(err);
+    })
+  }
+
+  deleteTodo(id: string) {
+    this.todoService.delete(id).subscribe(resp => {
+      this.items.splice(this.items.indexOf(this.items.find(todo => todo._id == id)), 1);
+    }, err => {
+      console.log(err);
+    })
+  }
+
 }

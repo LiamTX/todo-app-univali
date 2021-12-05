@@ -22,4 +22,12 @@ export class TodoService {
   create(data: { description: string }) {
     return this.http.post(`${environment.baseUrl}/todo`, data, { headers: this.generateHeaders() });
   }
+
+  update(id: string, data: { description?: string, done?: boolean }) {
+    return this.http.put(`${environment.baseUrl}/todo/${id}`, data, { headers: this.generateHeaders() });
+  }
+
+  delete(id: string) {
+    return this.http.delete(`${environment.baseUrl}/todo/${id}`, { headers: this.generateHeaders() });
+  }
 }

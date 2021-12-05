@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -8,6 +9,8 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class CsRegisterComponent implements OnInit {
 
+  loading = false;
+
   item = {
     username: '',
     email: '',
@@ -15,7 +18,8 @@ export class CsRegisterComponent implements OnInit {
   };
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -29,10 +33,32 @@ export class CsRegisterComponent implements OnInit {
       return;
     }
 
+    this.loading = true;
+
     this.userService.create(this.item).subscribe(resp => {
       console.log(resp);
+      this.loading = false;
+
+      this.item = {
+        username: '',
+        email: '',
+        password: ''
+      }
+
+      alert('Cadastro efetuado com sucesso!');
+
+      this.router.navigate(['login'])
+
     }, err => {
+      this.loading = false;
+
       console.log(err);
+
+      this.item = {
+        username: '',
+        email: '',
+        password: ''
+      }
 
       const { error } = err;
 
