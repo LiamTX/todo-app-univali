@@ -67,6 +67,9 @@ export class CsRegisterComponent implements OnInit {
 
         return;
       }
+
+      alert('Erro interno, tente novamente mais tarde!');
+      return;
     });
   }
 }

@@ -68,7 +68,8 @@ export class CsLoginComponent implements OnInit {
         return;
       }
 
-      alert('Erro interno');
+      alert('Erro interno, tente novamente mais tarde!');
+      return;
     })
   }
 
