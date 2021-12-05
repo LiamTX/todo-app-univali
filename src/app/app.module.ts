@@ -20,6 +20,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { CsToolbarComponent } from './components/cs-toolbar/cs-toolbar.component';
 import { CsNewTodoComponent } from './components/cs-new-todo/cs-new-todo.component';
 import { CsSpinnerComponent } from './components/cs-spinner/cs-spinner.component';
+import { AuthGuard } from './guards/AuthGuard';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,7 @@ import { CsSpinnerComponent } from './components/cs-spinner/cs-spinner.component
     MatCheckboxModule,
     MatProgressSpinnerModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
